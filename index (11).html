@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover">
+    <title>ذيب لتأجير السيارات | البنود والسياسات</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Cairo', 'Segoe UI', sans-serif;
+            background: #f0f4f9;
+            direction: rtl;
+            overflow-x: hidden;
+        }
+
+        /* خلفية الصفحة */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)), url('https://www.theebonline.com/wp-content/themes/Theeb-theme/./images/home-page-background.png');
+            background-size: cover;
+            background-position: center;
+            z-index: -2;
+            pointer-events: none;
+        }
+
+        /* هيدر بسيط */
+        .site-header {
+            background: rgba(255,255,255,0.96);
+            padding: 15px 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo img {
+            height: 52px;
+            width: auto;
+        }
+        .back-home {
+            background: #0f6aa4;
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 40px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            font-family: inherit;
+            transition: 0.2s;
+        }
+        .back-home:hover {
+            background: #1a4d3e;
+        }
+
+        /* محتوى البنود */
+        .terms-container {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .terms-card {
+            background: rgba(255,255,255,0.97);
+            border-radius: 32px;
+            box-shadow: 0 25px 45px -12px rgba(0,0,0,0.25);
+            overflow: hidden;
+        }
+
+        .terms-header {
+            background: linear-gradient(135deg, #1a4d3e, #0f3a2e);
+            padding: 30px;
+            color: white;
+            text-align: center;
+        }
+        .terms-header h1 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 5px;
+        }
+        .terms-header p {
+            opacity: 0.85;
+            font-size: 0.9rem;
+        }
+
+        .terms-body {
+            padding: 30px;
+        }
+
+        /* أقسام البنود */
+        .policy-section {
+            margin-bottom: 30px;
+            border-bottom: 1px solid #eef2f8;
+            padding-bottom: 25px;
+        }
+        .policy-section:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        .policy-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #1a4d3e;
+            margin-bottom: 15px;
+        }
+        .policy-title i {
+            font-size: 1.5rem;
+            color: #f9b81b;
+        }
+        .policy-content {
+            color: #2c3e35;
+            line-height: 1.7;
+            font-size: 0.9rem;
+            padding-right: 28px;
+        }
+        .policy-content p {
+            margin-bottom: 10px;
+        }
+        .policy-content ul {
+            padding-right: 25px;
+            margin: 8px 0;
+        }
+        .policy-content li {
+            margin-bottom: 6px;
+        }
+
+        /* مربع الموافقة المخصص */
+        .consent-box {
+            background: #fef9e6;
+            border-radius: 20px;
+            padding: 20px;
+            margin-top: 30px;
+            border-right: 4px solid #f9b81b;
+        }
+        .custom-checkbox {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            cursor: pointer;
+            font-weight: 600;
+            color: #1a2e3a;
+            font-size: 1rem;
+        }
+        .custom-checkbox input {
+            display: none;
+        }
+        .checkmark {
+            width: 26px;
+            height: 26px;
+            background: white;
+            border: 2px solid #1a4d3e;
+            border-radius: 8px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.2s;
+            cursor: pointer;
+        }
+        .custom-checkbox input:checked + .checkmark {
+            background: #1a4d3e;
+            border-color: #1a4d3e;
+        }
+        .custom-checkbox input:checked + .checkmark::after {
+            content: "✔";
+            font-size: 16px;
+            color: white;
+            font-weight: bold;
+        }
+        .consent-text {
+            flex: 1;
+        }
+
+        /* زر الدفع - يظهر فقط عند الموافقة */
+        .payment-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #1a4d3e, #0f3a2e);
+            color: white;
+            border: none;
+            padding: 16px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 25px;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            opacity: 0.5;
+            pointer-events: none;
+        }
+        .payment-btn.active {
+            opacity: 1;
+            pointer-events: auto;
+            cursor: pointer;
+        }
+        .payment-btn.active:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(26,77,62,0.3);
+        }
+
+        /* تذييل */
+        .footer {
+            background: linear-gradient(135deg, #0a2a44 0%, #0f3a5a 100%);
+            color: #fff;
+            margin-top: 40px;
+            padding: 40px 20px 20px;
+            text-align: center;
+        }
+        .footer p {
+            font-size: 0.8rem;
+            opacity: 0.8;
+        }
+
+        @media (max-width: 768px) {
+            .terms-body {
+                padding: 20px;
+            }
+            .policy-title {
+                font-size: 1rem;
+            }
+            .policy-content {
+                padding-right: 15px;
+            }
+            .terms-header h1 {
+                font-size: 1.4rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header class="site-header">
+    <div class="header-container">
+        <div class="logo">
+            <img src="https://www.theebonline.com/wp-content/themes/Theeb-theme/images/login-logo.png" alt="شعار ذيب">
+        </div>
+        
+    </div>
+</header>
+
+<div class="terms-container">
+    <div class="terms-card">
+        <div class="terms-header">
+            <h1>📜 بنود وسياسات ذيب لتأجير السيارات</h1>
+            <p>يرجى قراءة البنود بعناية قبل إتمام عملية الحجز</p>
+        </div>
+        <div class="terms-body">
+            <!-- القسم 1: سياسة الحجز والإلغاء -->
+            <div class="policy-section">
+                <div class="policy-title">
+                    <i class="fas fa-calendar-check"></i>
+                    <span>سياسة الحجز والإلغاء</span>
+                </div>
+                <div class="policy-content">
+                    <p>• يتم تأكيد الحجز بعد دفع مبلغ الحجز المطلوب عبر البوابة الإلكترونية.</p>
+                    <p>• يمكن إلغاء الحجز مجاناً قبل 24 ساعة من موعد الاستلام، مع استرداد كامل المبلغ.</p>
+                    <p>• في حال الإلغاء خلال أقل من 24 ساعة، يتم خصم 50% من قيمة اليوم الأول كرسوم إدارية.</p>
+                    <p>• عدم إلغاء الحجز وعدم الحضور (No-Show) يؤدي إلى خصم قيمة اليوم الأول بالكامل.</p>
+                </div>
+            </div>
+
+            <!-- القسم 2: سياسة التأمين والمسؤولية -->
+            <div class="policy-section">
+                <div class="policy-title">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>التأمين والمسؤولية</span>
+                </div>
+                <div class="policy-content">
+                    <p>• جميع السيارات مؤمنة تأميناً شاملاً ضد الغير والحوادث (التأمين الإلزامي والتكميلي).</p>
+                    <p>• يتحمل المستأجر قيمة التحميل المتبقي (الخصم) في حال وقوع حادث يتسبب فيه، وفقاً لنوع السيارة.</p>
+                    <p>• التأمين لا يغطي الأضرار الجانبية مثل الإطارات، الزجاج، أو التلف الناتج عن الإهمال الجسيم.</p>
+                    <p>• يوصى بشراء حماية إضافية (LDW) لتقليل قيمة التحمل إلى الصفر.</p>
+                </div>
+            </div>
+
+            <!-- القسم 3: سياسة القيادة والمخالفات -->
+            <div class="policy-section">
+                <div class="policy-title">
+                    <i class="fas fa-traffic-light"></i>
+                    <span>المخالفات والسائق الإضافي</span>
+                </div>
+                <div class="policy-content">
+                    <p>• السائق الرئيسي هو الشخص المسجل في عقد الإيجار، ويجب أن يكون حاملاً لرخصة سير سارية المفعول.</p>
+                    <p>• أي مخالفات مرورية مسجلة على السيارة خلال فترة التأجير تتحمل مسؤوليتها الشركة وتُحمل على المستأجر مع رسوم إدارية 25 ريال لكل مخالفة.</p>
+                    <p>• إضافة سائق إضافي يتطلب تسجيله في العقد وقد يتم تطبيق رسوم إضافية.</p>
+                    <p>• القيادة خارج المملكة غير مسموحة إلا بعد الحصول على موافقة خطية مسبقة.</p>
+                </div>
+            </div>
+
+            <!-- القسم 4: سياسة الوقود والصيانة -->
+            <div class="policy-section">
+                <div class="policy-title">
+                    <i class="fas fa-gas-pump"></i>
+                    <span>الوقود والصيانة</span>
+                </div>
+                <div class="policy-content">
+                    <p>• يتم تسليم السيارة بخزان وقود ممتلئ، ويجب إعادتها بنفس المستوى، وإلا سيتم احتساب تعبئة الخزان مقابل 3 ريال/لتر + 50 ريال خدمة.</p>
+                    <p>• الصيانة الدورية مجانية وتتم لدى مراكز الصيانة المعتمدة لذيب، وعدم الإبلاغ عن أعطال خلال فترة الإيجار قد يعرض العميل للمساءلة.</p>
+                    <p>• يتحمل المستأجر تكاليف الإطارات في حال التلف الناتج عن سوء الاستخدام أو الحوادث.</p>
+                </div>
+            </div>
+
+            <!-- القسم 5: سياسة البيانات والخصوصية -->
+            <div class="policy-section">
+                <div class="policy-title">
+                    <i class="fas fa-lock"></i>
+                    <span>الخصوصية والبيانات</span>
+                </div>
+                <div class="policy-content">
+                    <p>• نلتزم بحماية بياناتك الشخصية وفقًا للوائح حماية البيانات في المملكة العربية السعودية.</p>
+                    <p>• يتم استخدام بياناتك فقط لتأكيد الحجوزات، والتواصل معك، وتحسين خدماتنا، ولن يتم مشاركتها مع أطراف خارجية دون موافقتك.</p>
+                    <p>• لديك الحق في طلب حذف بياناتك بعد انتهاء فترة الإيجار بستة أشهر.</p>
+                </div>
+            </div>
+
+            <!-- مربع الموافقة مع Checkbox مخصص -->
+            <div class="consent-box">
+                <label class="custom-checkbox" id="agreeLabel">
+                    <input type="checkbox" id="agreeCheckbox">
+                    <span class="checkmark"></span>
+                    <span class="consent-text">أقر وأتعهد بأنني قد اطلعت على جميع البنود والسياسات المذكورة أعلاه، وأوافق عليها بالكامل، وأتحمل المسؤولية الكاملة عن الالتزام بها أثناء فترة التأجير.</span>
+                </label>
+            </div>
+
+            <!-- زر الدفع / إكمال الحجز (غير مفعل افتراضياً) -->
+            <button class="payment-btn" id="paymentBtn" disabled>
+                <i class="fas fa-credit-card"></i> 
+                <span id="btnText">الدفع وإكمال الحجز</span>
+            </button>
+        </div>
+    </div>
+</div>
+
+<footer class="footer">
+    <p>© 2025 ذيب لتأجير السيارات - جميع الحقوق محفوظة | تأجير سيارات بثقة وموثوقية</p>
+</footer>
+
+<script>
+    // عناصر الصفحة
+    const agreeCheckbox = document.getElementById('agreeCheckbox');
+    const paymentBtn = document.getElementById('paymentBtn');
+    
+
+    // دالة تحديث حالة الزر بناءً على الموافقة
+    function updateButtonState() {
+        if (agreeCheckbox.checked) {
+            paymentBtn.classList.add('active');
+            paymentBtn.disabled = false;
+        } else {
+            paymentBtn.classList.remove('active');
+            paymentBtn.disabled = true;
+        }
+    }
+
+    // عند تغيير حالة الموافقة
+    agreeCheckbox.addEventListener('change', updateButtonState);
+
+    // عند الضغط على زر الدفع (بعد الموافقة)
+    paymentBtn.addEventListener('click', function() {
+        if (agreeCheckbox.checked) {
+            // التحويل المباشر للصفحة التالية
+            window.location.href = "https://aq2490226-cell.github.io/Theeb-/";
+        }
+    });
+
+
+
+    // تطبيق حالة أولية (الزر معطل)
+    updateButtonState();
+
+    // تحسين ظهور الـ checkbox المخصص: السماح بالنقر على النص أيضاً
+    const consentLabel = document.getElementById('agreeLabel');
+    if(consentLabel) {
+        consentLabel.addEventListener('click', function(e) {
+            // إذا كان النقر على الـ checkbox نفسه أو الـ span الداخلي يتم التعامل معه بشكل طبيعي
+            // منع التكرار
+        });
+    }
+</script>
+
+</body>
+</html>
